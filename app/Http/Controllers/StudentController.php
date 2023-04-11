@@ -13,7 +13,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        //returns all Student information
+        return Student::all();
     }
 
     /**
