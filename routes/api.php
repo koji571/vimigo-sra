@@ -24,5 +24,15 @@ Route::post('/login', [UserAuthController::class, 'login'])->name('login');
 
 // Routes that require authentication
 Route::middleware(['auth:api'])->group(function () {
+    // Route for /student/search
+    Route::get('/student/search', [StudentController::class, 'show'])->middleware('api');
+
+    // Route for /student/update
+    Route::get('/student/{id}', [StudentController::class, 'update'])->middleware('api');
+
+    // Route for /student
+    Route::get('/student', [StudentController::class, 'index'])->middleware('api');
+
+    // Other routes that require authentication
     Route::apiResource('/student', StudentController::class);
 });

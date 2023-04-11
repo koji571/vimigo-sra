@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name'); //name of student
             $table->string('email'); //email adress
             $table->string('address'); //student adress
-            $table->string('study course'); //course of study for student
+            $table->string('study_course'); //course of study for student
             $table->timestamps();
         });
     }

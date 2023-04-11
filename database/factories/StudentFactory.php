@@ -29,7 +29,7 @@ class StudentFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->email(),
             'address' => $this->faker->streetAddress(),
-            'study course' => $randomcourse,
+            'study_course' => $randomcourse,
 
         ];
     }
