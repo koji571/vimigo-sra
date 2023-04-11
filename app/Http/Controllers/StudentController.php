@@ -125,13 +125,17 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student){
+    public function destroy($name)
+{
+    // Delete the student by name
+    $student = Student::where('name', $name)->first();
 
-        // Delete the student model
+    if ($student) {
         $student->delete();
-
-        // Return a response indicating the student was deleted
         return response()->json(['message' => 'Student deleted successfully']);
+    } else {
+        return response()->json(['message' => 'Student not found'], 404);
     }
+}
 
 }
