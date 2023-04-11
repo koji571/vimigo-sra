@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //returns all Student information
-        return Student::all();
-    }
+    public function index(Request $request)
+{
+    // Paginate the records with a specified number of items per page
+    $perPage = 10; // Value to specify the number of items per page
+    $students = Student::paginate($perPage);
+
+    // Return the paginated records as the response
+    return $students;
+}
 
     /**
      * Show the form for creating a new resource.
