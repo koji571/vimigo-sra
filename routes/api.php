@@ -41,6 +41,8 @@ Route::middleware(['auth:api'])->group(function () {
 
     //Route for importing data to create new
     Route::post('/import', [ImportController::class, 'import']);
+    //Route for importing data to create new
+    Route::post('/delete', [ImportController::class, 'delete']);
 
 
 });
