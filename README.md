@@ -31,3 +31,5 @@ This will run the server on your local computer
 ## POSTMAN Collection
 [POSTMAN link](/vimigo-sra.postman_collection.json)
 ## Video Presentation
+https://user-images.githubusercontent.com/63295781/231515449-99278dfd-0fa4-4a4c-ac56-88d72642d2ca.mov
+
