@@ -1,7 +1,7 @@
 # vimigo-sra  
 A Laravel based application for a Student Registry App built with a REST API.
 
-## Instalation
+## Installation
 Git clone the repository and then run composer install to get the vendor packages.
 
     composer install
@@ -29,5 +29,5 @@ Finally to run the server, run the command
 This will run the server on your local computer
 
 ## POSTMAN Collection
-
+[POSTMAN link](/vimigo-sra.postman_collection.json)
 ## Video Presentation

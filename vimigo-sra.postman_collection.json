@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "e465d00e-f316-4bde-b688-72e7dea31d41",
+		"name": "vimigo-sra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/register?name=admin&email=admin@example.com&password=admin&password_confirmation=admin",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "admin"
+						},
+						{
+							"key": "email",
+							"value": "admin@example.com"
+						},
+						{
+							"key": "password",
+							"value": "admin"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/api/login?email=admin@example.com&password=admin",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "admin@example.com"
+						},
+						{
+							"key": "password",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query Index",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzkyNzEwMjU1ZDdlMDVjZmZiMTVlYmJiZjNhNTk5NmYyYWQ1ZTZmZmYyOGMxODI2NWJiOGUyZGQyNGNhOTc0Y2Q4ZjYwZTM3NDIzZTM5ODQiLCJpYXQiOjE2ODEyODMxOTMuNjg0ODczLCJuYmYiOjE2ODEyODMxOTMuNjg0ODc0LCJleHAiOjE3MTI5MDU1OTMuNjgyNTQ0LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.JxC5c_un-fHsx4eWjUCvu8Ln5Eo6Jp7L_U_agYouIiv-iqmRU0luNmXWQ3VIkzuWNC4UHM8VyDWFXAtAkr9XYFdJrNZ_vXFizWk0tAGgppdaCstrWqY75Z8nyIyqyl92gTU2AVwML1qNbyX63nn3RckfVUp5V74MAc01l485sMR6BcI8S6l1FWUIW3H3V2q3Ejtbsby_y3KolU8tVKBiqrAJteD15veOHTswzQsJXupc8QN2QOfrB8L10u2rVThX64qFOFqiN3Kl4gUKttotYaSm_mP267JEkcQ-roRvjDItW6uv2FOFrcud3p6UclRDw8goQhIWZ30LoRRnu2ZdlV0N5RTAuYditDehpn7RSNQL0_y0FF98WptKa4xvdkK6jO8vs8M9hZSno1AykGZ_b_hL0PBXVYecMhcF_YK0qMy1rp9idOQHFEykuAuQiU7GMFga1oPmZ8BheHdjg2bPLhaWSVqwuBQ91O22kVhHMk88VyOwf6wi7Az3PYva0KjWMyiQm2oegBQ-f3ZmmiEBeNUnqTgde-RlE9Q3lAWkQhRHc6A0-evRzbw9rPxEKqHFaXAKHnb-1xgKQ-VWh6YVrwFZISo8S0pgViMBOFghXwCqb61vxFvghwpQEMp3LjUmycowd_T1hq1AytO1A9JT8oUT3xgXyjqLUHQ7EkemN28",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/student",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzkyNzEwMjU1ZDdlMDVjZmZiMTVlYmJiZjNhNTk5NmYyYWQ1ZTZmZmYyOGMxODI2NWJiOGUyZGQyNGNhOTc0Y2Q4ZjYwZTM3NDIzZTM5ODQiLCJpYXQiOjE2ODEyODMxOTMuNjg0ODczLCJuYmYiOjE2ODEyODMxOTMuNjg0ODc0LCJleHAiOjE3MTI5MDU1OTMuNjgyNTQ0LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.JxC5c_un-fHsx4eWjUCvu8Ln5Eo6Jp7L_U_agYouIiv-iqmRU0luNmXWQ3VIkzuWNC4UHM8VyDWFXAtAkr9XYFdJrNZ_vXFizWk0tAGgppdaCstrWqY75Z8nyIyqyl92gTU2AVwML1qNbyX63nn3RckfVUp5V74MAc01l485sMR6BcI8S6l1FWUIW3H3V2q3Ejtbsby_y3KolU8tVKBiqrAJteD15veOHTswzQsJXupc8QN2QOfrB8L10u2rVThX64qFOFqiN3Kl4gUKttotYaSm_mP267JEkcQ-roRvjDItW6uv2FOFrcud3p6UclRDw8goQhIWZ30LoRRnu2ZdlV0N5RTAuYditDehpn7RSNQL0_y0FF98WptKa4xvdkK6jO8vs8M9hZSno1AykGZ_b_hL0PBXVYecMhcF_YK0qMy1rp9idOQHFEykuAuQiU7GMFga1oPmZ8BheHdjg2bPLhaWSVqwuBQ91O22kVhHMk88VyOwf6wi7Az3PYva0KjWMyiQm2oegBQ-f3ZmmiEBeNUnqTgde-RlE9Q3lAWkQhRHc6A0-evRzbw9rPxEKqHFaXAKHnb-1xgKQ-VWh6YVrwFZISo8S0pgViMBOFghXwCqb61vxFvghwpQEMp3LjUmycowd_T1hq1AytO1A9JT8oUT3xgXyjqLUHQ7EkemN28",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Ludwig Feest",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/student/search?search=Ludwig Feest",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student",
+						"search"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Ludwig Feest"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by Email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/student/search?search=garland.ruecker@yahoo.com",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student",
+						"search"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "garland.ruecker@yahoo.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/student/?name=Dylan Pee&email=DylanP@example.com&address=123 Dylan Street&study_course=ICT",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Dylan Pee"
+						},
+						{
+							"key": "email",
+							"value": "DylanP@example.com"
+						},
+						{
+							"key": "address",
+							"value": "123 Dylan Street"
+						},
+						{
+							"key": "study_course",
+							"value": "ICT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/student?name=Dylan Pee&email=&address=123 Elm Street&study_course=ICT",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Dylan Pee"
+						},
+						{
+							"key": "email",
+							"value": ""
+						},
+						{
+							"key": "address",
+							"value": "123 Elm Street"
+						},
+						{
+							"key": "study_course",
+							"value": "ICT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Student",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/student/delete?name=Dylan Pee",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Dylan Pee"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Import Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/leotan/Desktop/bulk_create.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/import",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"import"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Import Update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/leotan/Desktop/bulk_update.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"update"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Import Delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/leotan/Desktop/bulk_delete.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzkyNzEwMjU1ZDdlMDVjZmZiMTVlYmJiZjNhNTk5NmYyYWQ1ZTZmZmYyOGMxODI2NWJiOGUyZGQyNGNhOTc0Y2Q4ZjYwZTM3NDIzZTM5ODQiLCJpYXQiOjE2ODEyODMxOTMuNjg0ODczLCJuYmYiOjE2ODEyODMxOTMuNjg0ODc0LCJleHAiOjE3MTI5MDU1OTMuNjgyNTQ0LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.JxC5c_un-fHsx4eWjUCvu8Ln5Eo6Jp7L_U_agYouIiv-iqmRU0luNmXWQ3VIkzuWNC4UHM8VyDWFXAtAkr9XYFdJrNZ_vXFizWk0tAGgppdaCstrWqY75Z8nyIyqyl92gTU2AVwML1qNbyX63nn3RckfVUp5V74MAc01l485sMR6BcI8S6l1FWUIW3H3V2q3Ejtbsby_y3KolU8tVKBiqrAJteD15veOHTswzQsJXupc8QN2QOfrB8L10u2rVThX64qFOFqiN3Kl4gUKttotYaSm_mP267JEkcQ-roRvjDItW6uv2FOFrcud3p6UclRDw8goQhIWZ30LoRRnu2ZdlV0N5RTAuYditDehpn7RSNQL0_y0FF98WptKa4xvdkK6jO8vs8M9hZSno1AykGZ_b_hL0PBXVYecMhcF_YK0qMy1rp9idOQHFEykuAuQiU7GMFga1oPmZ8BheHdjg2bPLhaWSVqwuBQ91O22kVhHMk88VyOwf6wi7Az3PYva0KjWMyiQm2oegBQ-f3ZmmiEBeNUnqTgde-RlE9Q3lAWkQhRHc6A0-evRzbw9rPxEKqHFaXAKHnb-1xgKQ-VWh6YVrwFZISo8S0pgViMBOFghXwCqb61vxFvghwpQEMp3LjUmycowd_T1hq1AytO1A9JT8oUT3xgXyjqLUHQ7EkemN28",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
