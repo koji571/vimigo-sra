@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ImportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,9 @@ Route::middleware(['auth:api'])->group(function () {
 
     // Route for get for index
     Route::get('/student', [StudentController::class, 'index']);
+
+    //Route for importing data to create new
+    Route::post('/import', [ImportController::class, 'import']);
+
 
 });
