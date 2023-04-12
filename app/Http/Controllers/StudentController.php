@@ -59,30 +59,29 @@ class StudentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
+    * Display the specified resource.
+    */
 
-     public function show(Request $request)
-     {
-         // Get the search term from the request
-         $searchTerm = $request->input('search');
+    public function show(Request $request){
+        // Get the search term from the request
+        $searchTerm = $request->input('search');
 
-         // Validate the search term
-         $validatedData = $request->validate([
-             'search' => 'required|string'
-         ]);
+        // Validate the search term
+        $request->validate([
+            'search' => 'required|string'
+        ]);
 
-         // Search the student by name or email
-         $student = Student::where('name', $searchTerm)->orWhere('email', $searchTerm)->first();
+        // Search the student by name or email
+        $student = Student::where('name', $searchTerm)->orWhere('email', $searchTerm)->first();
 
-         // Check if student is found
-         if ($student) {
-             // Return the student data as a resource
-             return new StudentResource($student);
-         } else {
-             // Return a response indicating that the student is not found
-             return response()->json(['message' => 'Student not found'], 404);
-         }
+        // Check if student is found
+        if ($student) {
+            // Return the student data as a resource
+            return new StudentResource($student);
+        }else {
+            // Return a response indicating that the student is not found
+            return response()->json(['message' => 'Student not found'], 404);
+        }
 
     }
 
@@ -100,42 +99,41 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id){
 
-    /// Get the student by ID
-    $student = Student::find($id);
+        /// Get the student by ID
+        $student = Student::find($id);
 
-    // Check if student is found
-    if ($student) {
-        // Update the student data based on the request
-        $student->name = $request->input('name', $student->name);
-        $student->email = $request->input('email', $student->email);
-        $student->address = $request->input('address', $student->address);
-        $student->study_course = $request->input('study_course', $student->study_course);
+        // Check if student is found
+        if ($student) {
+            // Update the student data based on the request
+            $student->name = $request->input('name', $student->name);
+            $student->email = $request->input('email', $student->email);
+            $student->address = $request->input('address', $student->address);
+            $student->study_course = $request->input('study_course', $student->study_course);
 
-        // Save the updated student data
-        $student->save();
+            // Save the updated student data
+            $student->save();
 
-        // Return the updated student data as a resource
-        return new StudentResource($student);
-    } else {
-        // Return a response indicating that the student is not found
-        return response()->json(['message' => 'Student not found'], 404);
-    }
+            // Return the updated student data as a resource
+            return new StudentResource($student);
+        } else {
+            // Return a response indicating that the student is not found
+            return response()->json(['message' => 'Student not found'], 404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($name)
-{
-    // Delete the student by name
-    $student = Student::where('name', $name)->first();
+    public function destroy($id){
 
-    if ($student) {
-        $student->delete();
-        return response()->json(['message' => 'Student deleted successfully']);
-    } else {
-        return response()->json(['message' => 'Student not found'], 404);
+        // Delete the student by id
+        $student = Student::find($id);
+
+        if ($student) {
+            $student->delete();
+            return response()->json(['message' => 'Student deleted successfully']);
+        } else {
+            return response()->json(['message' => 'Student not found'], 404);
+        }
     }
-}
-
 }

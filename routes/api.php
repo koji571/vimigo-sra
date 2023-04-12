@@ -24,18 +24,18 @@ Route::post('/login', [UserAuthController::class, 'login'])->name('login');
 
 // Routes that require authentication
 Route::middleware(['auth:api'])->group(function () {
-    // Route for /student/search
-    Route::get('/student/search', [StudentController::class, 'show'])->middleware('api');
-
-    //Route for delete
-    Route::delete('/students/{name}', [StudentController::class, 'destroy'])->middleware('api');
-
-    // Route for /student/update
-    Route::get('/student/{id}', [StudentController::class, 'update'])->middleware('api');
-
-    // Route for get
-    Route::get('/student', [StudentController::class, 'index'])->middleware('api');
 
     // Other routes that require authentication
     Route::apiResource('/student', StudentController::class);
+
+    // Route for /student/search to search for particular student info
+    Route::get('/student/search', [StudentController::class, 'show']);
+
+    // Route for /student/{id} for update and delete
+    Route::put('/student/{id}', [StudentController::class, 'update']); // Update student
+    Route::delete('/student/{id}', [StudentController::class, 'destroy']); // Delete student
+
+    // Route for get for index
+    Route::get('/student', [StudentController::class, 'index']);
+
 });
