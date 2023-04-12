@@ -32,9 +32,11 @@ Route::middleware(['auth:api'])->group(function () {
     // Route for /student/search to search for particular student info
     Route::get('/student/search', [StudentController::class, 'show']);
 
-    // Route for /student/{id} for update and delete
-    Route::put('/student/{id}', [StudentController::class, 'update']); // Update student
-    Route::delete('/student/{id}', [StudentController::class, 'destroy']); // Delete student
+    // Route for /student for update
+    Route::put('/student', [StudentController::class, 'update']);
+
+    // Route for /student for delete
+    Route::delete('/student', [StudentController::class, 'destroy']);
 
     // Route for get for index
     Route::get('/student', [StudentController::class, 'index']);

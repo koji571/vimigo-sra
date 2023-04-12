@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -34,7 +35,7 @@ class ImportController extends Controller
         $rows = array_map("str_getcsv", explode("\n", $csvData));
         $header = array_shift($rows);
 
-
+        $students = [];
 
         foreach ($rows as $row) {
             $row = array_combine($header, $row);
@@ -48,11 +49,17 @@ class ImportController extends Controller
 
             // Save the student instance to the database
             $student->save();
+
+            // Add the student data as a resource to the array
+            $students[] = new StudentResource($student);
         }
 
-        // Return a response indicating successful creation of the students
-        return response()->json(['message' => 'Students created successfully'], 201);
-    }
+        // Return a response indicating successful creation of the students and the students data as resources
+        return response()->json([
+            'message' => 'Students created successfully',
+            'data' => $students
+        ], 201);
+}
 
     //Bulk Delete
     public function delete(Request $request)
@@ -83,7 +90,7 @@ class ImportController extends Controller
             $student = Student::where('name', $row['name'])->first(); // Find student by name
             if ($student) {
                 $student->delete(); // Delete student
-                $deletedStudents[] = $student; // Add deleted student to array
+                $deletedStudents[] = new StudentResource($student); // Add deleted student to array
             }
         }
 
@@ -115,13 +122,10 @@ class ImportController extends Controller
         // Loop through rows of data
         foreach ($rows as $row) {
             $row = array_combine($header, $row);
-            $student = Student::find($row['id']); // Find student by ID
+            $student = Student::where('name', $row['name'])->first(); // Find student by name
 
             if ($student) {
                 // Update student data based on input, if available
-                if (!empty($row['name'])) {
-                    $student->name = $row['name'];
-                }
                 if (!empty($row['email'])) {
                     $student->email = $row['email'];
                 }
@@ -133,7 +137,7 @@ class ImportController extends Controller
                 }
 
                 $student->save(); // Save updated student data
-                $updatedStudents[] = $student; // Add updated student to array
+                $updatedStudents[] = new StudentResource($student); // Add updated student resource to array
             }
         }
 

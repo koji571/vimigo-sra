@@ -19,8 +19,8 @@ class StudentController extends Controller
         $perPage = 10; // Value to specify the number of items per page
         $students = Student::paginate($perPage);
 
-        // Return the paginated records as the response
-        return $students;
+        // Transform the paginated students using StudentResource and return as the response
+        return StudentResource::collection($students); // Use StudentResource to transform the paginated students and return as the response
     }
 
     /**
@@ -55,7 +55,7 @@ class StudentController extends Controller
         $student->save();
 
         // Return a response indicating successful creation of the student
-        return response()->json(['message' => 'Student created successfully', 'data' => $student], 201);
+        return response()->json(['message' => 'Student created successfully', 'data' => new StudentResource($student)], 201);
     }
 
     /**
@@ -97,19 +97,23 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id){
+    public function update(Request $request){
 
-        /// Get the student by ID
-        $student = Student::find($id);
+        /// Get the student by name
+        $student = Student::where('name', $request->input('name'))->first();
 
         // Check if student is found
         if ($student) {
-            // Update the student data based on the request
-            $student->name = $request->input('name', $student->name);
-            $student->email = $request->input('email', $student->email);
-            $student->address = $request->input('address', $student->address);
-            $student->study_course = $request->input('study_course', $student->study_course);
-
+            // Update the student data based on the request, if available
+            if ($request->filled('email')) {
+                $student->email = $request->input('email');
+            }
+            if ($request->filled('address')) {
+                $student->address = $request->input('address');
+            }
+            if ($request->filled('study_course')) {
+                $student->study_course = $request->input('study_course');
+            }
             // Save the updated student data
             $student->save();
 
@@ -124,14 +128,15 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id){
+    public function destroy(Request $request){
 
-        // Delete the student by id
-        $student = Student::find($id);
+        /// Delete the student by name
+        $student = Student::where('name', $request->input('name'))->first();
+
 
         if ($student) {
             $student->delete();
-            return response()->json(['message' => 'Student deleted successfully']);
+            return response()->json(['message' => 'Student deleted successfully', 'data' => new StudentResource($student)]);
         } else {
             return response()->json(['message' => 'Student not found'], 404);
         }
