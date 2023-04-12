@@ -39,10 +39,12 @@ Route::middleware(['auth:api'])->group(function () {
     // Route for get for index
     Route::get('/student', [StudentController::class, 'index']);
 
-    //Route for importing data to create new
+    //Route for importing data to create new Student data
     Route::post('/import', [ImportController::class, 'import']);
-    //Route for importing data to create new
+    //Route for importing data to delete old Student data
     Route::post('/delete', [ImportController::class, 'delete']);
+    //Route for importing data to update old Student data
+    Route::post('/update', [ImportController::class, 'update']);
 
-
-});
+    }
+);

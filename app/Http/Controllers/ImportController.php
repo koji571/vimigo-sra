@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Validator;
 class ImportController extends Controller
 {
     /**
-     * Method to handle bulk import of data
-     * (Bulk Create)
+     * Methods to handle bulk import of data
      */
+
+     //Bulk Create
     public function import(Request $request)
     {
         // Validate file input
@@ -53,13 +54,15 @@ class ImportController extends Controller
         return response()->json(['message' => 'Students created successfully'], 201);
     }
 
+    //Bulk Delete
     public function delete(Request $request)
     {
+        // Validate file input
         $validator = Validator::make($request->all(), [
             'file' => 'required'
         ]);
 
-
+        // Get file and parse CSV data
         if ($validator->fails()) {
             return redirect()
                 ->back()
@@ -86,7 +89,55 @@ class ImportController extends Controller
 
         // Return response with deleted students
         return response()->json(['message' => 'Students deleted successfully', 'data' => $deletedStudents], 200);
+    }
 
+    //Bulk Update
+    public function update(Request $request){
+        // Validate file input
+        $validator = Validator::make($request->all(), [
+            'file' => 'required'
+        ]);
 
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator);
+        }
+
+        // Get file and parse CSV data
+        $file = $request->file('file');
+        $csvData = file_get_contents($file);
+        $rows = array_map("str_getcsv", explode("\n", $csvData));
+        $header = array_shift($rows);
+
+        $updatedStudents = []; // Array to store updated students
+
+        // Loop through rows of data
+        foreach ($rows as $row) {
+            $row = array_combine($header, $row);
+            $student = Student::find($row['id']); // Find student by ID
+
+            if ($student) {
+                // Update student data based on input, if available
+                if (!empty($row['name'])) {
+                    $student->name = $row['name'];
+                }
+                if (!empty($row['email'])) {
+                    $student->email = $row['email'];
+                }
+                if (!empty($row['address'])) {
+                    $student->address = $row['address'];
+                }
+                if (!empty($row['study_course'])) {
+                    $student->study_course = $row['study_course'];
+                }
+
+                $student->save(); // Save updated student data
+                $updatedStudents[] = $student; // Add updated student to array
+            }
+        }
+
+        // Return response with updated students
+        return response()->json(['message' => 'Students updated successfully', 'data' => $updatedStudents], 200);
     }
 }
