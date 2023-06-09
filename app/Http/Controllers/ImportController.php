@@ -7,6 +7,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\csvRequest;
 
 class ImportController extends Controller
 {
@@ -39,7 +40,7 @@ class ImportController extends Controller
      */
 
      //Bulk Create
-    private function import(Request $request)
+    private function import(csvRequest $request)
     {
         // Validate file input
         $validator = Validator::make($request->all(), [
@@ -85,20 +86,8 @@ class ImportController extends Controller
 }
 
     //Bulk Delete
-    private function delete(Request $request)
+    private function delete(csvRequest $request)
     {
-        // Validate file input
-        $validator = Validator::make($request->all(), [
-            'file' => 'required'
-        ]);
-
-        // Get file and parse CSV data
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator);
-        }
-
 
         $file = $request->file('file');
         $csvData = file_get_contents($file);
@@ -122,17 +111,7 @@ class ImportController extends Controller
     }
 
     //Bulk Update
-    private function update(Request $request){
-        // Validate file input
-        $validator = Validator::make($request->all(), [
-            'file' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator);
-        }
+    private function update(csvRequest $request){
 
         // Get file and parse CSV data
         $file = $request->file('file');
