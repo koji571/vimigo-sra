@@ -10,18 +10,41 @@ use Illuminate\Support\Facades\Validator;
 
 class ImportController extends Controller
 {
+
+    /**
+     * Handle which method it goes to
+     */
+
+    public function handleRequest(Request $request){
+
+        //check which action is selected
+        $action = $request['action'];
+
+        // Check if the method exists in the controller
+        switch ($action) {
+            case 'import':
+                return $this->import($request);
+            case 'delete':
+                return $this->delete($request);
+            case 'update':
+                return $this->update($request);
+            default:
+                // Handle unknown action
+                return response()->json('Unknown action');
+        }
+     }
+
     /**
      * Methods to handle bulk import of data
      */
 
      //Bulk Create
-    public function import(Request $request)
+    private function import(Request $request)
     {
         // Validate file input
         $validator = Validator::make($request->all(), [
             'file' => 'required'
         ]);
-
         // Get file and parse .csv data
         if ($validator->fails()) {
             return redirect()
@@ -62,7 +85,7 @@ class ImportController extends Controller
 }
 
     //Bulk Delete
-    public function delete(Request $request)
+    private function delete(Request $request)
     {
         // Validate file input
         $validator = Validator::make($request->all(), [
@@ -99,7 +122,7 @@ class ImportController extends Controller
     }
 
     //Bulk Update
-    public function update(Request $request){
+    private function update(Request $request){
         // Validate file input
         $validator = Validator::make($request->all(), [
             'file' => 'required'
